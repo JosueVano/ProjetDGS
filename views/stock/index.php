@@ -7,7 +7,7 @@
                 Stock
             </div>
             <div class="text-gray-500 space-x-3">
-                <a href="/commande/cart/create" class="hover:text-orange-500">
+                <a href="/commande/cart/create" class="hover:text-orange-500" title="Ajouter des articles">
                     <i class="fal fa-plus"></i>
                 </a>
             </div>
@@ -18,7 +18,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nom de l'article</th>
-                            <th>Quantite</th>
+                            <th class="text-right">Quantite</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -29,14 +29,11 @@
                             <tr>
                                 <td><?php echo $i; ?></td>
                                 <td class="uppercase"><?php echo $stock->nom ?></td>
-                                <td class="uppercase"><?php echo $stock->qte ?></td>
+                                <td class="text-right"><?php echo $stock->qte ?></td>
                                 <td class="text-right">
-                                    <a href="" class="text-gray-500 hover:text-orange-500 mr-2">
+                                    <!-- <a href="" class="text-gray-500 hover:text-orange-500 mr-2">
                                         <i class="fal fa-search-plus fa-lg"></i>
-                                    </a>
-                                    <a href="" class="text-gray-500 hover:text-orange-500 mr-2">
-                                        <i class="fal fa-print fa-lg"></i>
-                                    </a>
+                                    </a> -->
                                 </td>
                             </tr>
                         <?php endforeach ?>
