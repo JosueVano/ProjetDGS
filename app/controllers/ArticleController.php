@@ -4,6 +4,7 @@ namespace App\controllers;
 use App\Lib\View;
 use config\Database;
 use app\models\Article;
+use App\Repositories\ArticleRepository;
 
 class ArticleController {
     private $conn;
@@ -29,6 +30,32 @@ class ArticleController {
         return View::make('articles/index', [
             'articles'  =>$articles,
         ]);
+
+    }
+
+    public function create()
+    {
+
+
+        return View::make('articles/create', [
+
+        ]);
+
+    }
+
+    public function store()
+    {
+
+        $_article = new ArticleRepository;
+
+        $data = [
+            'name'  =>$_POST['name'],
+            'prix'  =>$_POST['prix'],
+        ];
+
+        $_article->create($data);
+
+        header('Location: /article');
 
     }
 

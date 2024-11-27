@@ -44,5 +44,25 @@ class ArticleRepository
 
     }
 
+    public function create($data)
+    { 
+        
+        $db = new Database;
+
+        $conn = $db->getConnection();
+
+        $query = "INSERT INTO `articles` (`nom`, `prix`) VALUES (:nom, :prix)";
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam(':nom', $data['name']);
+        $stmt->bindParam(':prix', $data['prix']);
+
+        $stmt->execute();
+
+    }
+
+
+
     
 }

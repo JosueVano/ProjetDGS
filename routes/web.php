@@ -53,7 +53,8 @@ Router::add('POST', '/update.agence', AgenceController::class .'@updateAgence');
 
 Router::add('GET', '/article', ArticleController::class . '@index');
 Router::add('POST', '/article', ArticleController::class . '@index');
-Router::add('POST', '/create.article', ArticleController::class .'@createArticle'); // Route pour traiter le formulaire d'ajout
+Router::add('GET', '/article/create', ArticleController::class .'@create'); // Route pour traiter le formulaire d'ajout
+Router::add('POST', '/article/store', ArticleController::class .'@store'); // Route pour traiter le formulaire d'ajout
 Router::add('POST', '/delete.article', ArticleController::class .'@deleteArticle'); // Route pour traiter la suppression
 Router::add('POST', '/update.article', ArticleController::class .'@updateArticle'); // Route pour traiter la modification
 
