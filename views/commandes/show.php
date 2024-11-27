@@ -23,21 +23,21 @@
             </div>
             <?php if($mode == 'send'): ?>
             <div class="mb-5">
-                <form action="">
+                <form method="POST" action="<?php echo "/commande/expedier/store?id=$commande->id_commande" ?>">
                     <div class="flex justify-between w-full space-x-2 items-center">
                         <div class="flex flex-1 space-x-2">
                             <div class="w-1/3">
-                                <select name="" class="form-control">
-                                    <option value="">TAXIBROUSSE</option>
-                                    <option value="">BATEAU</option>
-                                    <option value="">AVION</option>
+                                <select name="typeTrans" class="form-control">
+                                    <option value="1">TAXIBROUSSE</option>
+                                    <option value="2">BATEAU</option>
+                                    <option value="3">AVION</option>
                                 </select>
                             </div>
                             <div class="w-1/3">
                                 <input type="date" name="dateExp" class="form-control">
                             </div>
                             <div class="w-1/3">
-                                <input type="text" name="transporteur" class="form-control" placeholder="Réf transporteur">
+                                <input type="text" name="refTrans" class="form-control" placeholder="Réf transporteur">
                             </div>
                         </div>
                         <div>
@@ -85,6 +85,14 @@
                     <a href="<?php echo "/commande/expedier?id=$commande->id_commande" ?>" class="text-orange-500 hover:text-orange-700 hover:underline">
                         <i class="fal fa-paper-plane mr-1"></i>
                         Expedier</a>
+                </div>
+            <?php endif ?>
+
+            <?php if($mode == 'show' && $commande->status == '2'): ?>
+                <div class="mt-3">
+                    <a href="<?php echo "/commande/expedier?id=$commande->id_commande" ?>" class="text-orange-500 hover:text-orange-700 hover:underline">
+                        <i class="fal fa-paper-plane mr-1"></i>
+                        Reçu</a>
                 </div>
             <?php endif ?>
 

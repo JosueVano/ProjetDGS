@@ -69,6 +69,7 @@ Router::add('POST', '/commande', CommandeController::class.'@index');
 Router::add('GET', '/commande/show', CommandeController::class.'@show');
 
 Router::add('GET', '/commande/expedier', ExpeditionController::class.'@create');
+Router::add('POST', '/commande/expedier/store', ExpeditionController::class.'@store');
 
 Router::add('GET', '/commande/cart/create', CommandeTmpController::class .'@create'); // Route pour traiter le formulaire d'ajout
 Router::add('GET', '/commande/cart', CommandeTmpController::class .'@cart'); // Route pour traiter le formulaire d'ajout

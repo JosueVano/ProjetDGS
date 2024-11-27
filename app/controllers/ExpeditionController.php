@@ -6,6 +6,7 @@ use App\Lib\View;
 use config\Database;
 use app\models\Article;
 use App\Repositories\CommandeRepository;
+use App\Repositories\ExpeditionRepository;
 
 class ExpeditionController
 {
@@ -28,6 +29,29 @@ class ExpeditionController
             'articles'  =>$articles,
             'mode'  =>'send'
         ]);      
+
+    }
+
+    public function store()
+    {
+
+        $_exped = new ExpeditionRepository;
+
+        $params = Route::params();
+
+        $commandeId = $params->id;
+
+        $data = [
+            'commande_id' =>$commandeId, 
+            'date_exp' =>$_POST['dateExp'], 
+            'type_trans' =>$_POST['typeTrans'], 
+            'ref_exp' =>$_POST['refTrans']
+        ];
+
+        $_exped->create($data);
+
+        header('Location: /commande/show?id='.$commandeId);
+
 
     }
 

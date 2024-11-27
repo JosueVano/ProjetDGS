@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 27 nov. 2024 à 15:38
+-- Généré le : mer. 27 nov. 2024 à 16:48
 -- Version du serveur : 8.0.39
 -- Version de PHP : 8.2.18
 
@@ -91,9 +91,9 @@ CREATE TABLE IF NOT EXISTS `commandes` (
 --
 
 INSERT INTO `commandes` (`id_commande`, `agence_id`, `date`, `status`) VALUES
-('241127073230', 119, '2024-11-27', '1'),
+('241127073230', 119, '2024-11-27', '2'),
 ('241127134014', 119, '2024-11-20', '2'),
-('241127150314', 119, '2024-11-26', '1');
+('241127150314', 119, '2024-11-26', '2');
 
 -- --------------------------------------------------------
 
@@ -150,6 +150,31 @@ CREATE TABLE IF NOT EXISTS `com_articles_tmp` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `expeditions`
+--
+
+DROP TABLE IF EXISTS `expeditions`;
+CREATE TABLE IF NOT EXISTS `expeditions` (
+  `id_exp` int NOT NULL AUTO_INCREMENT,
+  `commande_id` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `date_exp` date DEFAULT NULL,
+  `type_trans` enum('1','2','3') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ref_exp` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_exp`),
+  KEY `commande_id` (`commande_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `expeditions`
+--
+
+INSERT INTO `expeditions` (`id_exp`, `commande_id`, `date_exp`, `type_trans`, `ref_exp`) VALUES
+(1, '241127073230', '2024-11-27', '1', 'CONTRASU VOITURE 2356AC'),
+(2, '241127150314', '2024-11-27', '1', 'FENOSOAVA VOITURE 2878AC');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -189,6 +214,12 @@ ALTER TABLE `commandes`
 ALTER TABLE `com_articles`
   ADD CONSTRAINT `com_articles_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `commandes` (`id_commande`) ON DELETE RESTRICT ON UPDATE CASCADE,
   ADD CONSTRAINT `fkarticle` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id_article`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `expeditions`
+--
+ALTER TABLE `expeditions`
+  ADD CONSTRAINT `expeditions_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `commandes` (`id_commande`) ON DELETE RESTRICT ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
