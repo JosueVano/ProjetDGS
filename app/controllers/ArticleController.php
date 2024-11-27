@@ -36,7 +36,6 @@ class ArticleController {
     public function create()
     {
 
-
         return View::make('articles/create', [
 
         ]);
