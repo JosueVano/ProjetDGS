@@ -51,6 +51,11 @@
                             Commandes
                         </a>
                     </div>
+                    <div>
+                        <a href="/stock" class="flex items-center dropdown-toggle h-12 hover:bg-opacity-70 px-3 uppercase">
+                            Stock
+                        </a>
+                    </div>
                 </div>
                 <div>
                     <a href="/logout">Déconnecter</a>

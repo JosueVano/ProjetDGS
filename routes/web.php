@@ -10,6 +10,7 @@ use app\controllers\CommandeTmpController;
 use App\controllers\ExpeditionController;
 use App\controllers\HomeController;
 use App\controllers\LoginController;
+use App\controllers\StockController;
 use App\controllers\UserController;
 
 
@@ -75,6 +76,8 @@ Router::add('GET', '/commande/show', CommandeController::class.'@show');
 Router::add('GET', '/commande/expedier', ExpeditionController::class.'@create');
 Router::add('POST', '/commande/expedier/store', ExpeditionController::class.'@store');
 
+Router::add('GET', '/commande/sortie', StockController::class.'@sortie');
+
 Router::add('GET', '/commande/cart/create', CommandeTmpController::class .'@create'); // Route pour traiter le formulaire d'ajout
 Router::add('GET', '/commande/cart', CommandeTmpController::class .'@cart'); // Route pour traiter le formulaire d'ajout
 Router::add('POST', '/commande/cart/store', CommandeTmpController::class .'@store'); // Route pour traiter le formulaire d'ajout
@@ -82,6 +85,9 @@ Router::add('POST', '/commande/cart/store', CommandeTmpController::class .'@stor
 Router::add('POST', '/commande/store', CommandeController::class .'@store'); // Route pour traiter le formulaire d'ajout
 Router::add('POST', '/delete.commande', CommandeController::class .'@deleteCommande'); // Route pour traiter la suppression
 Router::add('POST', '/update.commande', CommandeController::class .'@updateCommande'); // Route pour traiter la modification
+
+Router::add('GET', '/stock', StockController::class.'@index');
+Router::add('GET', '/stock/sortie', StockController::class.'@sortie');
 
 
 

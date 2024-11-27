@@ -146,4 +146,22 @@ class CommandeRepository
         
 
     }
+
+    public function recu($commandeId)
+    { 
+        
+        $db = new Database;
+
+        $conn = $db->getConnection();
+
+        $query = "UPDATE commandes SET `status` = '4' WHERE id_commande = :id_commande";
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam(':id_commande', $commandeId);
+
+        $stmt->execute();
+        
+
+    }
 }

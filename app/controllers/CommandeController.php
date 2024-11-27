@@ -32,6 +32,7 @@ class CommandeController {
             '1' =>'En cours',
             '2' =>'Livrée',
             '3' =>'abandonnée',
+            '4' =>'Reçue',
         ];
 
         return View::make('commandes/index', [
@@ -96,6 +97,21 @@ class CommandeController {
             'articles'  =>$articles,
             'mode'  =>'show',
         ]);      
+
+    }
+
+    public function recu()
+    {
+
+        $_commande = new CommandeRepository;
+
+        $params = Route::params();
+
+        $commandeId = $params->id;
+
+        $_commande->recu($commandeId);
+
+        header('Location: /commande');
 
     }
 
