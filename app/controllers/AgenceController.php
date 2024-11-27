@@ -4,6 +4,7 @@ namespace App\controllers;
 use App\Lib\View;
 use config\Database;
 use app\models\Agence;
+use App\Repositories\AgenceRepository;
 
 class AgenceController {
     
@@ -17,18 +18,6 @@ class AgenceController {
 
     public function index() {
 
-        // include __DIR__ . '/../../public/views/header.php';
-        // Récupérer tous les Agence
-        // $agences = $this->getAllAgences();
-
-        // if (isset($_POST['id_agence']))
-        // {
-        //     $agencesId = $this->getAgenceById($_POST['id_agence']); 
-        // }
-        
-        // Inclure la vue correspondante avec les données
-        // include __DIR__ . '/../../public/views/admin/agence_view.php';
-
         $agences = $this->getAllAgences();
 
         return View::make('agences/index', [
@@ -36,6 +25,33 @@ class AgenceController {
         ]);
 
     }
+
+    public function create()
+    {
+
+        return View::make('agences/create', []);
+
+    }
+
+    public function store()
+    {
+
+        $_agence = new AgenceRepository;
+
+        $data = [
+            'id_agence' =>$_POST['code'],
+            'name' =>$_POST['name'],
+            'email' =>$_POST['email'],
+            'status'    =>'1'
+        ];
+
+        $_agence->create($data);
+
+        header('Location: /agence');
+
+    }
+
+    
 
     public function getAllAgences() {
 

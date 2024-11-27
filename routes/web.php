@@ -46,8 +46,11 @@ Router::add('GET', '/logout', LoginController::class .'@logout');
 Router::add('GET', '/home', HomeController::class .'@index');
 
 Router::add('GET', '/agence', AgenceController::class .'@index');
+Router::add('GET', '/agence/show', AgenceController::class .'@show');
+
 Router::add('POST', '/agence', AgenceController::class .'@index');//pour la zone de recherche
-Router::add('POST', '/create.agence', AgenceController::class .'@createAgence'); // Route pour traiter le formulaire d'ajout
+Router::add('GET', '/agence/create', AgenceController::class .'@create'); // Route pour traiter le formulaire d'ajout
+Router::add('POST', '/agence/store', AgenceController::class .'@store'); // Route pour traiter le formulaire d'ajout
 Router::add('POST', '/delete.agence', AgenceController::class .'@deleteAgence'); // Route pour traiter la suppression
 Router::add('POST', '/update.agence', AgenceController::class .'@updateAgence'); // Route pour traiter la modification
 
