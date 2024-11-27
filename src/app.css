@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+
+.table, .table-simple{
+    @apply w-full text-sm;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.3rem 0.3rem;
+    background-color: transparent;
+    border-bottom-width: 1px;
+  }
+
+  .table-simple > :not(caption) > * > * {
+      padding: 0.3rem 0.3rem;
+      background-color: transparent;
+      border-bottom-width: 1px;
+    }
+
+.table-border-col > :not(caption) > * > :not(:last-child) {
+    border-right-width: 1px;
+  }
+  .table > tbody {
+    vertical-align: inherit;
+  }
+  .table > thead,
+  .table-simple > thead {
+    vertical-align: bottom;
+    text-align: left;
+
+  }
+
+  .table > :not(:last-child) > :last-child > * {
+    @apply bg-gray-500 text-gray-200;
+  }
+
+  .table-simple > :not(:last-child) > :last-child > * {
+    @apply  text-gray-600;
+  }
+
+  .table > tbody > tr > td,
+  .table-simple > tbody > tr > td {
+      @apply text-gray-600 align-middle;
+  }
+
+  .table-striped > tbody > tr:nth-of-type(odd) {
+    @apply bg-gray-100;
+  }
+
+  .table-hover > tbody > tr:hover {
+    @apply bg-gray-200;
+  }
+
+  .table-hover > tbody > tr:hover > td {
+    @apply text-orange-500;
+  }
+
+
+
+  .checkbox {
+      @apply rounded border-gray-300 text-yellow-600 shadow-sm focus:border-yellow-300 focus:ring focus:ring-offset-0 focus:ring-yellow-200 focus:ring-opacity-50;
+  }
+  
+  .form-control
+  {
+      @apply w-full text-sm  text-gray-700 px-3 border border-gray-300 rounded-md focus:border-blue-400 focus:border-opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-30 placeholder-gray-500  placeholder-opacity-40;
+  
+  }
+
+  
+
+  .btn{
+    @apply border px-3 py-1 text-white text-opacity-80 rounded-md shadow-md  font-semibold focus:outline-none focus:ring-2 ring-opacity-50;
+}
+
+.btn-simple{
+    @apply focus:outline-none;
+}
+
+.btn-success{
+  @apply border-green-500 bg-green-600 bg-opacity-90  hover:bg-opacity-80 ring-green-500;
+}
+
+.btn-dark{
+  @apply border-gray-500 bg-gray-600  hover:bg-opacity-90 ring-gray-500;
+}
+
+.btn-gray{
+  @apply border-gray-300 bg-gray-400 hover:bg-opacity-90 ring-gray-300 text-gray-800;
+}
+
+.btn-warning{
+  @apply border-orange-500 bg-orange-600 hover:bg-opacity-90 ring-orange-500;
+}
+
+.btn-warning-alt{
+  @apply border-yellow-500 bg-yellow-600 hover:bg-opacity-90 ring-yellow-500;
+}
+
+.btn-connexion {
+  @apply hover:text-orange-500 font-bold px-3 py-1  ring-orange-500 focus:outline-none rounded-md  focus:text-orange-500 focus:ring-2 ring-opacity-50;
+}
+
+.btn-orange{
+  @apply border-orange-500 bg-orange-600 hover:bg-opacity-90 ring-orange-500;
+}
+
+.btn-rose{
+  @apply border-rose-500 bg-rose-600 hover:bg-opacity-90 ring-rose-500;
+}
+
+.btn-sky{
+  @apply border-sky-500 bg-sky-600 hover:bg-opacity-90 ring-sky-500;
+}
+
+.btn-indigo{
+  @apply border-indigo-500 bg-indigo-600 hover:bg-opacity-90 ring-indigo-500;
+}
+
+.btn-pink{
+  @apply border-pink-500 bg-pink-600 hover:bg-opacity-90 ring-pink-500;
+}
+
+.btn-fuchsia{
+  @apply border-fuchsia-500 bg-fuchsia-600 hover:bg-opacity-90 ring-fuchsia-500;
+}
+.btn-cyan{
+  @apply border-cyan-700 bg-cyan-800 hover:bg-opacity-80 ring-cyan-500 text-opacity-70 bg-opacity-90;
+}
+.btn-yellow{
+  @apply border-yellow-500 bg-yellow-600 hover:bg-opacity-90 ring-yellow-500;
+}
+
+
+@tailwind utilities;
