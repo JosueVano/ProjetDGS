@@ -1,3 +1,4 @@
+<?php App\Lib\View::header() ?>
 <h1>Liste des articles</h1>    
 <table class="table table-stripped table-hover">
         <thead>
@@ -17,3 +18,4 @@
             <?php endforeach ?>
         </tbody>
 </table>
+<?php App\Lib\View::footer() ?>
