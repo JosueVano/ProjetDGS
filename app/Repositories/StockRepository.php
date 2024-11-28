@@ -8,20 +8,16 @@ use config\Database;
 class StockRepository
 {
 
-    public function get($agenceId)
+    public function get()
     { 
         
         $db = new Database;
 
         $conn = $db->getConnection();
 
-        $query = "SELECT agence_id, a.nom, SUM(entree)-SUM(sortie) qte  FROM `stocks` s INNER JOIN `commandes` c ON s.commande_id = c.id_commande
-            INNER JOIN `articles` a ON s.`article_id` = a.`id_article`
-            WHERE agence_id = :agence_id GROUP BY agence_id, a.nom";
+        $query = "SELECT a.nom, SUM(entree)-SUM(sortie) qte  FROM `stocks` s INNER JOIN `articles` a ON s.`article_id` = a.`id_article` GROUP BY a.nom";
 
         $stmt = $conn->prepare($query);
-
-        $stmt->bindParam(':agence_id', $agenceId);
 
         $stmt->execute();
 
@@ -71,5 +67,45 @@ class StockRepository
         $stmt->execute();
         
 
+    }    
+
+    public function input($data)
+    { 
+        
+        $db = new Database;
+
+        $conn = $db->getConnection();
+
+        $refCmd = date('ymdHis');
+
+        $agenceId = $data['agence_id'];
+
+        $query_1 = "INSERT INTO commandes(`id_commande`, `agence_id`, `date`, `status`) VALUES (:id_commande, :agence, :dateCmd, :cmdStatus); ";
+
+        $query_2 = "INSERT INTO stocks(`commande_id`, `article_id`, `entree`, `prix`)
+                    SELECT '$refCmd',`article_id`, `qte`, `prix` FROM com_articles_tmp WHERE agence_id = '$agenceId';";
+
+        $query_3 = "DELETE FROM com_articles_tmp WHERE agence_id = '$agenceId'";
+
+        $stmt = $conn->prepare($query_1);
+
+        $stmt2 = $conn->prepare($query_2);
+
+        $stmt3 = $conn->prepare($query_3);
+
+        $stmt->bindParam(':id_commande', $refCmd);
+        $stmt->bindParam(':agence', $data['agence_id']);
+        $stmt->bindParam(':dateCmd', $data['dateCmd']);
+        $stmt->bindParam(':cmdStatus', $data['status']);
+
+        $stmt->execute();
+
+        $stmt2->execute();
+
+        $stmt3->execute();
+        
+
     }
+
+
 }

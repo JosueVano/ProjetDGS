@@ -88,6 +88,11 @@ Router::add('POST', '/delete.commande', CommandeController::class .'@deleteComma
 Router::add('POST', '/update.commande', CommandeController::class .'@updateCommande'); // Route pour traiter la modification
 
 Router::add('GET', '/stock', StockController::class.'@index');
+Router::add('GET', '/stock/create', StockController::class.'@create');
+Router::add('GET', '/stock/cart', StockController::class .'@cart');
+Router::add('POST', '/stock/store', StockController::class.'@store');
+Router::add('POST', '/stock/entree', StockController::class.'@input');
+
 Router::add('GET', '/stock/sortie', StockController::class.'@sortie');
 
 

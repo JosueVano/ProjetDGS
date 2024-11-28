@@ -31,14 +31,79 @@ class StockController
 
     }
 
-    public function entree()
+    public function create()
     {
+
+        $articles = (new ArticleRepository)->get();
+
+        $cmdArticles = (new CommandeRepository)->getCmdArticle();
+
+        $mode = 'create';
+
+        return View::make('stock/create', [
+            'articles'  =>$articles,
+            'mode'  =>$mode,
+            'cmdArticles'  =>$cmdArticles,
+        ]);
+
+
+    }
+
+    public function store()
+    {
+
+        $user = (object)(new User)->current();
+
+        $article = (new ArticleRepository)->find($_POST['article']);
+
+        $data = [
+            'agence_id' =>$user->agence_id,
+            'article_id'    =>$_POST['article'],
+            'qte'    =>$_POST['qte'],
+            'prix'    =>$article->prix,
+        ];
+
+        $cmd = new CommandeRepository;
+
+        $cmd->cmdArticle($data);
+
+        header('Location: /stock/create');
+
+    }
+
+    public function cart()
+    {
+
+        $cmdArticles = (new CommandeRepository)->getCmdArticle();
+
+        $mode = 'cart';
+
+        return View::make('stock/create', [
+            'mode'  =>$mode,
+            'cmdArticles'  =>$cmdArticles,
+        ]);
+        
+    }
+
+    public function input()
+    {
+
+        $user = (object)(new User)->current();
+
+        $data = [
+            'agence_id' =>$user->agence_id,
+            'dateCmd'    =>$_POST['dateCmd'],
+            'status'    =>'4',
+        ];
 
         $_stock = new StockRepository;
 
-        
+        $_stock->input($data);
+
+        header('Location: /stock');
 
     }
+
 
     public function sortie()
     {

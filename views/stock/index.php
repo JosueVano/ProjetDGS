@@ -7,7 +7,7 @@
                 Stock
             </div>
             <div class="text-gray-500 space-x-3">
-                <a href="/commande/cart/create" class="hover:text-orange-500" title="Ajouter des articles">
+                <a href="/stock/create" class="hover:text-orange-500" title="Ajouter des articles">
                     <i class="fal fa-plus"></i>
                 </a>
             </div>
