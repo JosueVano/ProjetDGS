@@ -34,6 +34,14 @@ class StockController
     public function create()
     {
 
+        session_start();
+
+        if($_SESSION['agence-status'] == 2){
+
+            header('Location: /stock');
+
+        }
+
         $articles = (new ArticleRepository)->get();
 
         $cmdArticles = (new CommandeRepository)->getCmdArticle();
@@ -73,6 +81,14 @@ class StockController
 
     public function cart()
     {
+
+        session_start();
+
+        if($_SESSION['agence-status'] == 2){
+
+            header('Location: /stock');
+
+        }
 
         $cmdArticles = (new CommandeRepository)->getCmdArticle();
 
