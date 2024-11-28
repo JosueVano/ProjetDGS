@@ -5,6 +5,7 @@ use config\Database;
 
 use app\models\User;
 use app\Lib\View;
+use App\Repositories\AgenceRepository;
 
 class LoginController
 {
@@ -34,12 +35,18 @@ class LoginController
             $user = $userModel->login($username, $password);
     
             if ($user) {
+
+                $agence = (new AgenceRepository)->find($user['agence_id']);
                 // Successful authentication
                 session_start();
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['agence'] = $agence->id_agence;
+                $_SESSION['agence-status'] = $agence->status;
+
                 header("Location: /");
                 exit();
+                
             } else {
                 // Authentication failed
                 echo "Nom d'utilisateur ou mot de passe incorrect.";

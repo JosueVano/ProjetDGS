@@ -72,6 +72,7 @@ Router::add('GET', '/commande', CommandeController::class .'@index');
 Router::add('POST', '/commande', CommandeController::class.'@index');
 
 Router::add('GET', '/commande/show', CommandeController::class.'@show');
+Router::add('GET', '/commande/reception', CommandeController::class.'@reception');
 
 Router::add('GET', '/commande/expedier', ExpeditionController::class.'@create');
 Router::add('POST', '/commande/expedier/store', ExpeditionController::class.'@store');

@@ -80,7 +80,7 @@
                         </tbody>
                 </table>
             </div>
-            <?php if($mode == 'show' && $commande->status == '1'): ?>
+            <?php if($mode == 'show' && $commande->status == '1'  && $agenceStatus == '1'): ?>
                 <div class="mt-3">
                     <a href="<?php echo "/commande/expedier?id=$commande->id_commande" ?>" class="text-orange-500 hover:text-orange-700 hover:underline">
                         <i class="fal fa-paper-plane mr-1"></i>
@@ -88,9 +88,9 @@
                 </div>
             <?php endif ?>
 
-            <?php if($mode == 'show' && $commande->status == '2'): ?>
+            <?php if($mode == 'show' && $commande->status == '2' && $agenceStatus == '2'): ?>
                 <div class="mt-3">
-                    <a href="<?php echo "/stock/sortie?id=$commande->id_commande" ?>" class="text-orange-500 hover:text-orange-700 hover:underline">
+                    <a href="<?php echo "/commande/reception?id=$commande->id_commande" ?>" class="text-orange-500 hover:text-orange-700 hover:underline">
                         <i class="fal fa-paper-plane mr-1"></i>
                         Reçu</a>
                 </div>

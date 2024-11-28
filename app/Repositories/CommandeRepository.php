@@ -32,12 +32,21 @@ class CommandeRepository
 
     public function get()
     { 
+
+        session_start();
         
         $db = new Database;
 
         $conn = $db->getConnection();
 
-        $query = "SELECT c.*, a.id_agence, a.nom FROM `commandes` c INNER JOIN `agences` a ON c.`agence_id` = a.`id_agence`";
+        $where = "";
+
+        if($_SESSION['agence-status'] == '2'){
+            $agenceId = $_SESSION['agence'];
+            $where = "WHERE c.agence_id = '$agenceId'";
+        }
+
+        $query = "SELECT c.*, a.id_agence, a.nom FROM `commandes` c INNER JOIN `agences` a ON c.`agence_id` = a.`id_agence` ".$where;
 
         $stmt = $conn->prepare($query);
 
@@ -147,7 +156,7 @@ class CommandeRepository
 
     }
 
-    public function recu($commandeId)
+    public function reception($commandeId)
     { 
         
         $db = new Database;

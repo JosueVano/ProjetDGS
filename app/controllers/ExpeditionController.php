@@ -7,6 +7,7 @@ use config\Database;
 use app\models\Article;
 use App\Repositories\CommandeRepository;
 use App\Repositories\ExpeditionRepository;
+use App\Repositories\StockRepository;
 
 class ExpeditionController
 {
@@ -36,6 +37,8 @@ class ExpeditionController
     {
 
         $_exped = new ExpeditionRepository;
+
+        $_stock = new StockRepository;
 
         $params = Route::params();
 

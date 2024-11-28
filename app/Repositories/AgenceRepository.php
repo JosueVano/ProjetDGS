@@ -7,6 +7,26 @@ use config\Database;
 class AgenceRepository
 {
 
+    public function find($agenceId)
+    { 
+        
+        $db = new Database;
+
+        $conn = $db->getConnection();
+
+        $query = "SELECT * FROM `agences` WHERE id_agence = :id_agence";
+
+        $stmt = $conn->prepare($query);
+
+        $stmt->bindParam(':id_agence', $agenceId);
+
+        $stmt->execute();
+
+        return (object)$stmt->fetch();
+
+
+    }
+
     public function get()
     { 
         

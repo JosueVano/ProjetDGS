@@ -43,11 +43,14 @@ class User {
         }
     
         return null; // Authentication failed
-    }
+    }    
 
     public function current()
     {
-        session_start();
+        
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
         $id = $_SESSION['user_id'];
 
@@ -62,4 +65,5 @@ class User {
         return $stmt->fetch();
 
     }
+
 }

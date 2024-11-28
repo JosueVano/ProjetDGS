@@ -16,9 +16,12 @@ class CommandeController {
     private $conn;
     private $table_name = "commandes";
 
+    private $agenceStatus;
+
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConnection();
+
     }
 
     // Fonction index pour afficher toutes les commandes
@@ -82,6 +85,10 @@ class CommandeController {
     public function show()
     {
 
+        session_start();
+
+        $agenceStatus = $_SESSION['agence-status'];
+
         $_commande = new CommandeRepository;
 
         $params = Route::params();
@@ -96,11 +103,12 @@ class CommandeController {
             'commande'  =>$commande,
             'articles'  =>$articles,
             'mode'  =>'show',
+            'agenceStatus'  =>$agenceStatus,
         ]);      
 
     }
 
-    public function recu()
+    public function reception()
     {
 
         $_commande = new CommandeRepository;
@@ -109,7 +117,7 @@ class CommandeController {
 
         $commandeId = $params->id;
 
-        $_commande->recu($commandeId);
+        $_commande->reception($commandeId);
 
         header('Location: /commande');
 

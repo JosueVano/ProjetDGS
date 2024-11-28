@@ -31,7 +31,7 @@ class StockController
 
     }
 
-    public function entre()
+    public function entree()
     {
 
         $_stock = new StockRepository;
